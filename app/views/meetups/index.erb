@@ -1,0 +1,4 @@
+<h1>Meetups</h1>
+<% @meetups.each do |meetup| %>
+  <a href="/meetups/<%=meetup.id%>"><%= meetup.name %></a><br>
+<% end  %>

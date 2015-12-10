@@ -1,0 +1,21 @@
+<h1><%=@meetup.name%></h1>
+
+<% unless @meetup.users.include?(current_user) %>
+  <form method="post" action="/meetups/<%=@meetup.id%>">
+  <input type="submit" value="Join This Meetup!" />
+  </form>
+<% end %>
+
+<h3>Description: </h3><%=@meetup.description%>
+<h3>Location: </h3><%=@meetup.location%>
+
+<% @meetup.users.each do |user| %>
+<% if @meetup.creator_id == user.id %>
+<h3>Creator: </h3><%= user.username %><br><br>
+<% end %>
+<%end%>
+
+<h3>Members:</h3>
+<% @meetup.users.each do |user| %>
+  <img src="<%=user.avatar_url%>"> <%= user.username %><br><br>
+  <%end%>
